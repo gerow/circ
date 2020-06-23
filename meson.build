@@ -4,6 +4,7 @@ inc = include_directories('include')
 
 subdir('include')
 subdir('src')
+subdir('test')
 
 pkgconfig = import('pkgconfig')
 pkgconfig.generate(libraries : lib,
