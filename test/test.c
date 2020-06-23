@@ -38,9 +38,11 @@ int test_full() {
   // Make sure a read-back contains the right values.
   int num_read = 0;
   while (circ_cnt(&c) > 0) {
-    if (*(char *)circ_read_ptr(&c) != 0xa5) {
+    char got = *(char *)circ_read_ptr(&c);
+    if (got != magic) {
       status = 1;
-      fprintf(stderr, "circ_read_ptr: bad value at index %x\n", num_read);
+      fprintf(stderr, "circ_read_ptr: bad value at index %x, got %x want %x\n",
+              num_read, got, magic);
     }
     num_read++;
     circ_read(&c, 1);
